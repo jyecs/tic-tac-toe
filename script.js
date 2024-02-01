@@ -43,5 +43,17 @@ function TicTacToe(playerOneName = "Player One", playerTwoName = "Player Two") {
             token: "X"
         }
     ];
+
+    let activePlayer = players[0];
+
+    const switchPlayerTurn = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    };
     
+    const playRound = (row, col) => {
+        board.playMove(row, col, activePlayer.token)
+        switchPlayerTurn();
+    };
+
+    return { playRound, getGameBoard: board.getGameBoard };
 }
